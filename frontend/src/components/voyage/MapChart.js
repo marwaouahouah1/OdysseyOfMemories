@@ -36,6 +36,7 @@ const MapChart = () => {
     const [markers,setMarkers] = useState();
     const [urlImg,setUrlImg] = useState("");
 
+    const [idVoyageDelete, setIdVoyageDelete] = useState("");
 
     useEffect(() => {
       fetch("/voyages/1").then(
@@ -71,6 +72,17 @@ async function getEtapeVoyage(idVoyage){
   );
 }
 
+ const deleteVoyage=(idVoyage)=>{
+  let url = "/voyage/delete/"+idVoyage;
+  console.log(idVoyage);
+   fetch(url).then(
+    res => res.json()
+  ).then(
+    data => {
+     console.log(data);
+    }
+  );
+}
 function getStepVoyage(data){
   var villeList = data.map((city) => city.nom_ville);
   var cityToDisplay = citiesList.filter(city => villeList.includes(city.name))
@@ -124,7 +136,6 @@ function filterUserVoyagesByContinent(voyages,index){
   const continentList = voyages.filter(voyage => voyage.continent == mainlandList[index].name);
   setVoyagesFilteredByContinent(continentList);
 }
-
 const cityFilteredByMainland = (index) => {
   const citiesOptions = citiesList.filter(city => city.continent == mainlandList[index].name);
   const options = citiesOptions.map(city => city.name);
@@ -319,6 +330,20 @@ const getOneStep = (nomVille) =>{
             ))}
             
           </ul>
+        </div>
+        <div className="btnVoyageDelete">
+        <Popup
+    trigger={<button className="button_delete_voyage"> Supprimer un voyage </button>}
+    modal
+    nested
+  >
+     <div className="header"> Créer un voyage</div>
+     <div className="body">
+      <span> id voyage</span>
+      <input mt={25} value={idVoyageDelete} type="textarea" placeholder="id" onChange={(e)=>{setIdVoyageDelete(e.target.value);}} />
+      <Button onClick={deleteVoyage(idVoyageDelete)}>Supprimer</Button>
+      </div>
+  </Popup>
         </div>
     </aside>
 

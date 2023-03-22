@@ -1,6 +1,6 @@
 from api import app,mysql
 import json
-import pathlib
+from pathlib import Path
 from werkzeug.utils import secure_filename
 import os
 
@@ -12,7 +12,7 @@ class Voyage():
     def getAllVoyages(idUser):
         cur = mysql.connection.cursor()
         cur.execute("SELECT id_voyage,titre,continent FROM voyages WHERE id_user="+str(idUser))
-        fetchdata = cur.fetchall()
+        fetchdata = cur.fetchall() 
         cur.close()
 
         return fetchdata
@@ -39,7 +39,9 @@ class Voyage():
     
     @staticmethod
     def uploadFile(file):
-        UPLOAD_FOLDER = str(pathlib.Path().resolve()) + "\web\public\souvenirs_files"
+        ROOT_DIR = Path(__file__).parent.parent.parent.parent
+        print(ROOT_DIR)
+        UPLOAD_FOLDER = str(ROOT_DIR)+"/frontend/public/souvenirs_files"
         app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
         
         filename = secure_filename(file.filename)
@@ -49,8 +51,16 @@ class Voyage():
     @staticmethod
     def insertEtapesVoyage(id_voyage, nom_ville,description_souvenir,file_souvenir,numero_etape):
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO etapes_voyage(id_voyage, nom_ville,description_souvenir,file_souvenir,numero_etape) VALUES('"+str(id_voyage)+"','"+str(nom_ville)+"',"+str(description_souvenir)+",'"+str(file_souvenir)+"','"+str(numero_etape)+"')")
+        cur.execute("INSERT INTO etapes_voyage(id_voyage, nom_ville,description_souvenir,file_souvenir,numero_etape) VALUES('"+str(id_voyage)+"','"+str(nom_ville)+"','"+str(description_souvenir)+"','"+str(file_souvenir)+"','"+str(numero_etape)+"')")
         cur.connection.commit()
         cur.close()
         return 1
          
+    @staticmethod
+    def deleteVoyage(id_voyage):
+        cur = mysql.connection.cursor()
+        cur.execute("DELETE FROM etapes_voyage WHERE id_voyage="+str(id_voyage))
+        # cur.execute("DELETE FROM voyages WHERE id_voyage="+str(id_voyage))
+        cur.connection.commit()
+        cur.close()
+        return 1

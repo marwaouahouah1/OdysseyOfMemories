@@ -38,3 +38,10 @@ def createVoyage():
     insertEtapesVoyageRep = Voyage.insertEtapesVoyage(id_voyage,villeName,souv,file.filename,numeroEtape)
     
     return jsonify(souv)
+
+@app.route("/voyage/delete/<idVoyage>", methods=["POST"])
+def deleteVoyage():
+    id_voyage = request.form['idVoyageDelete']
+    voyage = Voyage.deleteVoyage(id_voyage)
+    print("a")
+    return jsonify(voyage)
