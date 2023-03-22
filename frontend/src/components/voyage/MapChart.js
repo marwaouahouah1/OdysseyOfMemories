@@ -72,17 +72,25 @@ async function getEtapeVoyage(idVoyage){
   );
 }
 
- const deleteVoyage=(idVoyage)=>{
-  let url = "/voyage/delete/"+idVoyage;
-  console.log(idVoyage);
-   fetch(url).then(
-    res => res.json()
-  ).then(
-    data => {
-     console.log(data);
-    }
-  );
+const handleDeleteIdVoyage = (e) =>{
+  const voyageId = e.target.value;
+  setIdVoyageDelete(voyageId);
+  console.log(voyageId);
 }
+const deleteVoyage= async (e) =>{
+  e.preventDefault();
+  const data = new FormData();
+  data.append('idVoyageDelete',idVoyageDelete);
+
+  let rep = await fetch('/voyage/delete',
+  {
+      method: 'post',
+      body: data,
+  }
+  );
+  let res = await rep.json();
+}
+
 function getStepVoyage(data){
   var villeList = data.map((city) => city.nom_ville);
   var cityToDisplay = citiesList.filter(city => villeList.includes(city.name))
@@ -337,11 +345,11 @@ const getOneStep = (nomVille) =>{
     modal
     nested
   >
-     <div className="header"> Créer un voyage</div>
+     <div className="header"> Supprimer un voyage</div>
      <div className="body">
       <span> id voyage</span>
-      <input mt={25} value={idVoyageDelete} type="textarea" placeholder="id" onChange={(e)=>{setIdVoyageDelete(e.target.value);}} />
-      <Button onClick={deleteVoyage(idVoyageDelete)}>Supprimer</Button>
+      <input mt={25} value={idVoyageDelete} type="textarea" placeholder="id" onChange={handleDeleteIdVoyage} />
+      <Button onClick={deleteVoyage}>Supprimer</Button>
       </div>
   </Popup>
         </div>

@@ -39,9 +39,9 @@ def createVoyage():
     
     return jsonify(souv)
 
-@app.route("/voyage/delete/<idVoyage>", methods=["POST"])
+@app.route("/voyage/delete", methods=["POST"],strict_slashes=False)
 def deleteVoyage():
     id_voyage = request.form['idVoyageDelete']
     voyage = Voyage.deleteVoyage(id_voyage)
-    print("a")
+    print(id_voyage)
     return jsonify(voyage)

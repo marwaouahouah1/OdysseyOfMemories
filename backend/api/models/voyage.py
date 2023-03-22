@@ -57,10 +57,10 @@ class Voyage():
         return 1
          
     @staticmethod
-    def deleteVoyage(id_voyage):
+    def deleteVoyage(idVoyage):
         cur = mysql.connection.cursor()
-        cur.execute("DELETE FROM etapes_voyage WHERE id_voyage="+str(id_voyage))
-        # cur.execute("DELETE FROM voyages WHERE id_voyage="+str(id_voyage))
+        cur.execute("DELETE FROM etapes_voyage WHERE id_voyage="+str(idVoyage))
+        cur.execute("DELETE FROM voyages WHERE id_voyage="+str(idVoyage))
         cur.connection.commit()
         cur.close()
         return 1
