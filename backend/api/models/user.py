@@ -14,3 +14,17 @@ class User():
 
         return fetchdata
 
+
+    @staticmethod
+    def addUser(name, email, password, role):
+        # Créez un curseur pour exécuter des requêtes SQL
+        cur = mysql.connection.cursor()
+
+        # Exécutez une requête d'insertion pour ajouter un nouvel utilisateur à la base de données
+        cur.execute("INSERT INTO members (name, email, password, role) VALUES (%s, %s, %s, %s)", (name, email, password, role))
+
+        # Commit les changements à la base de données
+        mysql.connection.commit()
+
+        # Fermez le curseur
+        cur.close()
