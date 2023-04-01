@@ -32,9 +32,9 @@ function SignUpUser() {
     <div className='app'>
     <span style={{textAlign:"center", marginBottom:"20px"}}><h2>Inscription</h2></span>
     
-    <form onSubmit={handleSubmit}>
+    <form style={{width:100px" }}onSubmit={handleSubmit}>
       <label>
-        <span>Nom :</span>
+        Nom :
         <input
           type="text"
           value={name}
@@ -43,7 +43,7 @@ function SignUpUser() {
       </label>
       <br /><br />
       <label>
-      <span>Email :</span>
+        Adresse mail :
         <input
           type="email"
           value={email}
@@ -52,7 +52,7 @@ function SignUpUser() {
       </label>
       <br /><br />
       <label>
-      <span>Mot de passe :</span>
+        Mot de passe :
         <input
           type="password"
           value={password}

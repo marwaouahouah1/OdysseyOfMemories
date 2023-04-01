@@ -30,13 +30,7 @@ body {
     justify-content: center;
   }
 
-  form span {
-    margin-bottom: 20px;
-    margin-left: 30px;
-  }
-  form input {
-    width: 200px;
-  }
+  form 
 
   label {
     color: #008080;

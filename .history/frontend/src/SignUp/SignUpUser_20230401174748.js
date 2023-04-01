@@ -43,7 +43,7 @@ function SignUpUser() {
       </label>
       <br /><br />
       <label>
-      <span>Email :</span>
+      <span>Nom :</span>
         <input
           type="email"
           value={email}

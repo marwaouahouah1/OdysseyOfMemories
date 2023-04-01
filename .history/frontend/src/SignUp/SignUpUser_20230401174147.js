@@ -34,7 +34,7 @@ function SignUpUser() {
     
     <form onSubmit={handleSubmit}>
       <label>
-        <span>Nom :</span>
+        <p>Nom :
         <input
           type="text"
           value={name}
@@ -43,7 +43,7 @@ function SignUpUser() {
       </label>
       <br /><br />
       <label>
-      <span>Email :</span>
+        Adresse mail :
         <input
           type="email"
           value={email}
@@ -52,7 +52,7 @@ function SignUpUser() {
       </label>
       <br /><br />
       <label>
-      <span>Mot de passe :</span>
+        Mot de passe :
         <input
           type="password"
           value={password}

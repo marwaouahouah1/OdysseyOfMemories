@@ -1,5 +1,5 @@
 body {
-    background-color: #f0f8ff;
+    background-color: red;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -26,24 +26,14 @@ body {
   form {
     display: flex;
     flex-direction:column;
-    margin-top: 50px;
     justify-content: center;
+    align-items: center;
+    margin-top: 50px;
   }
-
-  form span {
-    margin-bottom: 20px;
-    margin-left: 30px;
-  }
-  form input {
-    width: 200px;
-  }
-
+  
   label {
     color: #008080;
     font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
   }
   
   input {
@@ -66,3 +56,5 @@ body {
   button:hover {
     background-color: #006666;
   }
+  
+  
