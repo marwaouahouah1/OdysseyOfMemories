@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import SignUpUser from '../src/User/SignUp/SignUpUser';
-import Login from '../src/User/Connexion/Login';
-import Profile from '../src/User/Profile/Profile'
+import SignUpUser from '../src/User';
+import Login from './Connexion/Login';
+import Profile from './Profile/Profile'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

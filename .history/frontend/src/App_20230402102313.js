@@ -1,6 +1,5 @@
 import React, {useState,useEffect} from 'react';
-import Login from './User/Connexion/Login'
-
+import './User/Connexion'
 function App(){
   const [data,setData] = useState([{}])
 
@@ -16,7 +15,7 @@ function App(){
   },[])
 
   return (
-    <Login/>
+    <></>
   )
 }
 
