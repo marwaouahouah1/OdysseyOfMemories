@@ -34,7 +34,7 @@ function SignUpUser() {
     
     <form onSubmit={handleSubmit}>
       <label>
-        <span>Nom </span>
+        <span>Nom :</span>
         <input
           type="text"
           value={name}
