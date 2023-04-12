@@ -1,0 +1,94 @@
+.GeneratePostcard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+  }
+  
+  .Postcard {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    width: 600px;
+    height: 400px;
+    background-color: white;
+    border: 1px solid black;
+    padding: 20px;
+    background-color: #a5e4d6;;
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.5);
+    
+  }
+ .titre{
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    font-family: "Lobster";
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+ }
+  .Recipient {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    font-family: "Sacramento";
+  }
+  
+  .Message {
+    font-size: 20px;
+    margin-top: 10px;
+    border: 2px solid black;
+    padding: 10px;
+    overflow: auto;
+    white-space: pre-wrap;
+    font-family: "Brush Script MT", cursive;
+  }
+  
+  .Image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .Image img {
+    max-width: 300px;
+    max-height: 300px;
+  }
+  
+  .SenderLocation {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-right: 50px;
+    font-size: 14px;
+  }
+  
+  .Sender {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    font-family: "Sacramento";
+  }
+  
+  .Location {
+    margin-top: 10px;
+    font-family: "Sacramento";
+  }
+  
+  button[type="submit"] {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #3e8e41;
+  }
+  
