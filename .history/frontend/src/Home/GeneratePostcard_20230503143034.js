@@ -1,6 +1,6 @@
 import React, { useState, useRef} from 'react';
 import generatePDF from '../CartePostal/generatePDF';
-
+ sendEmail from '../CartePostal/sendMail';import
 
 import '../css/carte.css';
 

@@ -1,6 +1,6 @@
 import React, { useState, useRef} from 'react';
 import generatePDF from '../CartePostal/generatePDF';
-
+import sendEmail from '../CartePostal/sendMail';
 
 import '../css/carte.css';
 
@@ -144,9 +144,7 @@ function GeneratePostcard() {
       </div>
       )}
 
-    <div className="buttons-container">
-      <button onClick={() => generatePDF(postcard)}>PDF</button>
-     
+    <d
     </div>
   </div>
     
