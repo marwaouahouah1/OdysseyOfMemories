@@ -11,12 +11,11 @@ import {
 import '../../css/voyage/mapchart.css';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import { ChakraProvider, Text, Box, Button, Input } from "@chakra-ui/react";
+import { ChakraProvider, Text, Box, Button } from "@chakra-ui/react";
 import { PersonForm } from "./Form";
-import {FaChevronCircleLeft,FaChevronCircleRight,FaTrashAlt} from "react-icons/fa/";
+import {FaChevronCircleLeft,FaChevronCircleRight} from "react-icons/fa/";
 import citiesList from "./cities";
 import mainlandList from "./mainland";
-
 
 const geoUrl = "https://raw.githubusercontent.com/deldersveld/topojson/master/continents/";
 
@@ -38,34 +37,6 @@ const MapChart = () => {
     const [urlImg,setUrlImg] = useState("");
 
     const [idVoyageDelete, setIdVoyageDelete] = useState("");
-    const [modifyCity, setModifyCity] = useState(false);
-    const [newSouvenirDescription, setNewSouvenirDescription] = useState("");
-    const [newSouvenirFile, setNewSouvenirFile] = useState();
-
-    const handleNewDescriptionChange = (e) =>{
-      setNewSouvenirDescription(e.target.value);
-    }
-
-    const handleNewSouvenirFile = (e) => {
-      setNewSouvenirFile(e.target.files[0]);
-    }
-
-    const sendStepVoyageModification = async (id_etape_voyage) => {
-      //e.preventDefault();
-      const data = new FormData();
-      data.append('id_etape_voyage',id_etape_voyage);
-      data.append('souvenir_description', newSouvenirDescription);
-      console.log(newSouvenirFile);
-      data.append('souvenir_file',newSouvenirFile);
-
-      let rep = await fetch('/voyage/modifyStep',
-      {
-          method: 'post',
-          body: data,
-      }
-      );
-      let res = await rep.json();
-    }
 
     useEffect(() => {
       fetch("/voyages/1").then(
@@ -102,21 +73,22 @@ async function getEtapeVoyage(idVoyage){
 }
 
 const handleDeleteIdVoyage = (e) =>{
-    const voyageId = e.target.value;
-    setIdVoyageDelete(voyageId);
-    console.log(voyageId);
+  const voyageId = e.target.value;
+  setIdVoyageDelete(voyageId);
+  console.log(voyageId);
 }
-const deleteVoyage= async (idVoy) =>{
-    const data = new FormData();
-    data.append('idVoyageDelete',idVoy);
+const deleteVoyage= async (e) =>{
+  e.preventDefault();
+  const data = new FormData();
+  data.append('idVoyageDelete',idVoyageDelete);
 
-    let rep = await fetch('/voyage/delete',
-    {
-        method: 'post',
-        body: data,
-    }
-    );
-    let res = await rep.json();
+  let rep = await fetch('/voyage/delete',
+  {
+      method: 'post',
+      body: data,
+  }
+  );
+  let res = await rep.json();
 }
 
 function getStepVoyage(data){
@@ -287,21 +259,13 @@ const getOneStep = (nomVille) =>{
             nested
           >
             <div>
-              {markers != null && modifyCity == false ?
+              {markers != null ?
               <div>
-                {markers.description_souvenir}  
-                            
+                {markers.description_souvenir}
+                
                 <img src={urlImg} alt="souvenir"/>
-                <Button onClick={()=>{setModifyCity(true);}}>Modifier</Button>
               </div>
-              : 
-              <>
-                <Box p={10} style={{backgroundColor:"white", borderRadius:"10px"}}>
-                  <Input mt={25} value={newSouvenirDescription} type="textarea" placeholder="Décrivez vos souvenirs" onChange={handleNewDescriptionChange} />
-                  <Input mt={25} onChange={handleNewSouvenirFile} type='file'/>
-                  <Button onClick={()=>{sendStepVoyageModification(markers.id_etape_voyage)}}>Valider</Button>
-                </Box>
-              </>
+              : <></>
               }
               
 
@@ -366,15 +330,28 @@ const getOneStep = (nomVille) =>{
           <ul className="columnVoyages">
             {voyagesFilteredByContinent.map((city) =>(
               <li key={city.id_voyage}>
-                <div className="">
+                <div>
                   <button onClick={() => getEtapeVoyage(city.id_voyage)} className="btnVoyage">{city.titre}</button>
-                  <button className="btn" onClick={()=> {deleteVoyage(city.id_voyage)}}><FaTrashAlt size={15} color="#CE5959"/></button>
                 </div>
               </li>
               
             ))}
             
           </ul>
+        </div>
+        <div className="btnVoyageDelete">
+        <Popup
+    trigger={<button className="button_delete_voyage"> Supprimer un voyage </button>}
+    modal
+    nested
+  >
+     <div className="header"> Supprimer un voyage</div>
+     <div className="body">
+      <span> id voyage</span>
+      <input mt={25} value={idVoyageDelete} type="textarea" placeholder="id" onChange={handleDeleteIdVoyage} />
+      <Button onClick={deleteVoyage}>Supprimer</Button>
+      </div>
+  </Popup>
         </div>
     </aside>
 

@@ -45,13 +45,3 @@ def deleteVoyage():
     voyage = Voyage.deleteVoyage(id_voyage)
     print(id_voyage)
     return jsonify(voyage)
-
-@app.route("/voyage/modifyStep", methods=["POST"],strict_slashes=False)
-def modifyStep():
-    idEtapeVoyage = request.form['id_etape_voyage']
-    souvenirDescription = request.form['souvenir_description']
-    souvenirFile = request.files['souvenir_file']
-    delete_file = Voyage.deleteUploadedFile("9")
-    upload_rep = Voyage.uploadFile(souvenirFile)
-    rep = Voyage.modifyStepVoyage(idEtapeVoyage,souvenirDescription, souvenirFile.filename)
-    return jsonify(rep)
